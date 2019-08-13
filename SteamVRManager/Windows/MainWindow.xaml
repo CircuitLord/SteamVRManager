@@ -40,6 +40,7 @@
         <CheckBox Name="UIRunOnWindowsStart" Content="Run at Windows Startup" ToolTip="Changes if the tool will startup with Windows. It is recommended to leave this on." Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5,54,0,0" VerticalAlignment="Top" Click="UIRunOnWindowsStart_Click"/>
         <Button Name="UIChangeSVRSettingsLocation" Content="Change steamvr.vrsettings Location" Grid.Column="1" HorizontalAlignment="Left" Margin="5,75,0,0" Grid.Row="3" VerticalAlignment="Top" Width="200" Click="UIChangeSVRSettingsLocation_Click"/>
         <CheckBox Name="UIStartMinimized" Content="Start Minimized" Grid.Column="1" HorizontalAlignment="Left" Margin="5,103,0,0" Grid.Row="3" VerticalAlignment="Top" Click="UIStartMinimized_Click"/>
+        <Button Name="UIControllerBindings" Content="Controller Bindings" ToolTip="Opens the web interface to bind controller buttons. (SteamVR must be open!)" Grid.Column="1" HorizontalAlignment="Left" Margin="10,228,0,0" Grid.Row="2" VerticalAlignment="Top" Width="124" Click="UIControllerBindings_Click"/>
 
 
 

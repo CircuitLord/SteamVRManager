@@ -222,6 +222,9 @@ namespace SteamVRManager
 			customLaunchWindow.Show();
 			customLaunchWindow.Focus();
 		}
+		private void UIControllerBindings_Click(object sender, RoutedEventArgs e) {
+			Process.Start("http://127.0.0.1:8998/dashboard/controllerbinding.html");
+		}
 
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
