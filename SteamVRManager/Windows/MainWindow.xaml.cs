@@ -64,7 +64,7 @@ namespace SteamVRManager
 
 
 
-			AutoUpdater.Start("https://github.com/CircuitLord/SteamVRManager/blob/master/version.xml");
+			AutoUpdater.Start("https://raw.githubusercontent.com/CircuitLord/SteamVRManager/master/version.xml");
 
 
 			if (Properties.Settings.Default.launchWithWindows) {
