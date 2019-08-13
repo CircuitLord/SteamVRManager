@@ -3,6 +3,8 @@
 
 SVR Manager is a tool that can fix and tweak SteamVR to your liking.
 
+This is still in development and I can't quite gurantee it doesn't break anything yet.
+
 ### So what exactly can it do?
 - Rescan for hardware on SteamVR launch: fixes headset audio device not showing.
 - Use Dashboard Quality Fix: uses the fix found by [SweViver](https://forum.pimaxvr.com/t/how-to-get-full-clarity-sharpness-in-steamvr-dashboard-overlay-on-low-end-gpus-with-pimax/) to obtain full quality on the SteamVR dashboard regardless of GPU.
