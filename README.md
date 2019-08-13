@@ -1,5 +1,5 @@
 # SteamVR Manager
-![SVR Manager Logo](https://i.imgur.com/I7FNZGz.png)
+![SVR Manager Logo](https://i.imgur.com/I7FNZGz.png?1)
 SVR Manager is a tool that can fix and tweak SteamVR to your liking.
 
 ### So what exactly can it do?
