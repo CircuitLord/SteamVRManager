@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SteamVRManager {
 	public static class SVRSettings {
@@ -14,6 +15,11 @@ namespace SteamVRManager {
 		
 
 		private static dynamic Load() {
+
+			if (!File.Exists(Properties.Settings.Default.svrSettingsPath)) {
+				MessageBox.Show("There was an error finding your steamvr.vrsettings file. Please set it manually below.", "Error");
+			}
+
 			return JObject.Parse(File.ReadAllText(Properties.Settings.Default.svrSettingsPath));
 		}
 

@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using SteamVRManager.Windows;
 using AutoUpdaterDotNET;
+using System.Collections.Specialized;
 
 namespace SteamVRManager
 {
@@ -31,9 +32,24 @@ namespace SteamVRManager
 
 		public MainWindow() {
 
+			System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+			ni.Icon = new System.Drawing.Icon("Main.ico");
+			ni.Visible = true;
+			ni.DoubleClick +=
+				delegate (object sender, EventArgs args) {
+					this.Show();
+					this.WindowState = WindowState.Normal;
+				};
+
 			AudioManager.GetAudioOutputDevices();
 
 			InitializeComponent();
+
+
+			if (Properties.Settings.Default.startMinimized) {
+				this.WindowState = WindowState.Minimized;
+			}
+
 
             CheckSteamVR.MonitorSteamVR();
 
@@ -51,10 +67,29 @@ namespace SteamVRManager
 			AutoUpdater.Start("https://github.com/CircuitLord/SteamVRManager/blob/master/version.xml");
 
 
+			if (Properties.Settings.Default.launchWithWindows) {
+				HandleStartup.EnableRunAtStartup();
+			}
+
+			if (Properties.Settings.Default.useDashboardFix) {
+				SVRSettings.ApplyDashboardFix(true);
+			}
+
+
+			
+
+
 
 
 		}
 
+
+		protected override void OnStateChanged(EventArgs e) {
+			if (WindowState == System.Windows.WindowState.Minimized)
+				this.Hide();
+
+			base.OnStateChanged(e);
+		}
 
 		public void LoadUIValues() {
 			UIRescanHardware.IsChecked = Properties.Settings.Default.rescanOnStart;
@@ -65,6 +100,8 @@ namespace SteamVRManager
 			UIPollingRate.SelectedIndex = Properties.Settings.Default.svrManagerPollingRateIndex;
 
 			UIRunOnWindowsStart.IsChecked = Properties.Settings.Default.launchWithWindows;
+
+			UIStartMinimized.IsChecked = Properties.Settings.Default.startMinimized;
 
 
 			uiEnabled = true;
@@ -84,13 +121,43 @@ namespace SteamVRManager
 
 				Log("SteamVR detected!");
 
+				//Rescan audio devices
+				if (Properties.Settings.Default.rescanOnStart)
+					Devcon.RescanHardware();
 
-				Console.WriteLine("Running devcon rescan");
-				
+				//Launch custom programs
+				StringCollection launch = Properties.Settings.Default.customLaunchPrograms;
+
+				if (launch != null && launch.Count > 0) {
+					foreach (string item in launch) {
+						Process.Start(item);
+					}
+				}
+
+
+				//Set volumes
+				if (Properties.Settings.Default.overrideAudioVol) {
+					AudioManager.SetVolumeOfDefault(Properties.Settings.Default.volEnterVR);
+				}
+
+
+
+
+
 
 
 			} else {
 				Log("SteamVR closed... :(");
+
+				//Reapply dashboard fix to keep it at high quality.
+				if (Properties.Settings.Default.useDashboardFix)
+					SVRSettings.ApplyDashboardFix(true);
+
+
+				//Set volumes
+				if (Properties.Settings.Default.overrideAudioVol) {
+					AudioManager.SetVolumeOfDefault(Properties.Settings.Default.volExitVR);
+				}
 			}
 
         }
@@ -107,6 +174,18 @@ namespace SteamVRManager
 			if (!uiEnabled) return;
 			Properties.Settings.Default.useDashboardFix = (bool)UIDashboardQualityFix.IsChecked;
 			Properties.Settings.Default.Save();
+
+			try {
+				SVRSettings.ApplyDashboardFix(Properties.Settings.Default.useDashboardFix);
+				Log("Dashboard fix " + Properties.Settings.Default.useDashboardFix.ToString());
+
+			} catch {
+				Log("Error applying dashboard fix.");
+
+			}
+
+
+			
 		}
 
 
@@ -158,6 +237,33 @@ namespace SteamVRManager
 				Properties.Settings.Default.svrSettingsPath = openFileDialog.FileName;
 				Properties.Settings.Default.Save();
 				Log("Saved new SVRSettings location.");
+			}
+		}
+
+		private void UIRunOnWindowsStart_Click(object sender, RoutedEventArgs e) {
+			if ((bool)UIRunOnWindowsStart.IsChecked) {
+				HandleStartup.EnableRunAtStartup();
+				Properties.Settings.Default.launchWithWindows = true;
+				Properties.Settings.Default.Save();
+				Log("Added to startup programs...");
+			} else {
+				HandleStartup.DisableRunAtStartup();
+				Properties.Settings.Default.launchWithWindows = false;
+				Properties.Settings.Default.Save();
+				Log("Removed from startup programs...");
+			}
+
+		}
+		private void UIStartMinimized_Click(object sender, RoutedEventArgs e) {
+
+			if (!uiEnabled) return;
+
+			if ((bool)UIStartMinimized.IsChecked) {
+				Properties.Settings.Default.startMinimized = true;
+				Properties.Settings.Default.Save();
+			} else {
+				Properties.Settings.Default.startMinimized = false;
+				Properties.Settings.Default.Save();
 			}
 		}
 

@@ -37,8 +37,9 @@
         <ComboBox Name="UIPollingRate" Grid.Column="1" HorizontalAlignment="Left" Margin="5,25,0,0" Grid.Row="3" VerticalAlignment="Top" Width="99" SelectionChanged="UIPollingRate_SelectionChanged"/>
         <Label Content="SVRManager Polling Rate" ToolTip="Changes how often SVRManager checks if SteamVR is open. Default (7000ms)." Grid.Column="1" HorizontalAlignment="Left" Margin="103,23,0,0" Grid.Row="3" VerticalAlignment="Top" Width="147" Height="28"/>
 
-        <CheckBox Name="UIRunOnWindowsStart" Content="Run at Windows Startup" ToolTip="Changes if the tool will startup with Windows. It is recommended to leave this on." Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5,54,0,0" VerticalAlignment="Top"/>
+        <CheckBox Name="UIRunOnWindowsStart" Content="Run at Windows Startup" ToolTip="Changes if the tool will startup with Windows. It is recommended to leave this on." Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5,54,0,0" VerticalAlignment="Top" Click="UIRunOnWindowsStart_Click"/>
         <Button Name="UIChangeSVRSettingsLocation" Content="Change steamvr.vrsettings Location" Grid.Column="1" HorizontalAlignment="Left" Margin="5,75,0,0" Grid.Row="3" VerticalAlignment="Top" Width="200" Click="UIChangeSVRSettingsLocation_Click"/>
+        <CheckBox Name="UIStartMinimized" Content="Start Minimized" Grid.Column="1" HorizontalAlignment="Left" Margin="5,103,0,0" Grid.Row="3" VerticalAlignment="Top" Click="UIStartMinimized_Click"/>
 
 
 

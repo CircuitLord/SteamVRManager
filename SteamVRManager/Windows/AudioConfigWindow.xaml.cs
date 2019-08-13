@@ -26,7 +26,12 @@ namespace SteamVRManager {
 
 
 			InitializeComponent();
+
+			UIOverrideVol.IsChecked = Properties.Settings.Default.overrideAudioVol;
 			UpdateVolEnabled();
+
+			UIEnterVRVol.Value = Properties.Settings.Default.volEnterVR;
+			UIExitVRVol.Value = Properties.Settings.Default.volExitVR;
 
 
 
@@ -48,14 +53,24 @@ namespace SteamVRManager {
 				UIExitVRVol.IsEnabled = true;
 				UILabel1.IsEnabled = true;
 				UILabel2.IsEnabled = true;
+				Properties.Settings.Default.overrideAudioVol = true;
+				Properties.Settings.Default.Save();
 			} else {
 				UIEnterVRVol.IsEnabled = false;
 				UIExitVRVol.IsEnabled = false;
 				UILabel1.IsEnabled = false;
 				UILabel2.IsEnabled = false;
+				Properties.Settings.Default.overrideAudioVol = false;
+				Properties.Settings.Default.Save();
 			}
 
 		}
 
+
+		private void UISave_Click(object sender, RoutedEventArgs e) {
+			Properties.Settings.Default.volEnterVR = (int)Math.Round(UIEnterVRVol.Value);
+			Properties.Settings.Default.volExitVR = (int)Math.Round(UIExitVRVol.Value);
+			Properties.Settings.Default.Save();
+		}
 	}
 }
