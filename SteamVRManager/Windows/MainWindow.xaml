@@ -1,0 +1,47 @@
+﻿<Window x:Class="SteamVRManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SteamVRManager"
+        mc:Ignorable="d"
+        Title="SteamVR Manager" Height="450" Width="300" MinWidth="300" Closing="Window_Closing">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+
+
+        <Label Name="UIStatus" Content="STATUS:"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="10"/>
+
+        <Label Content="SETTINGS" Grid.Row="2" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" />
+        <CheckBox Name="UIRescanHardware" Content="Rescan Hardware on SteamVR Opened" ToolTip="Fixes a bug with the headset audio device not showing up at all until the hardware is refreshed." Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="5,22,0,0" VerticalAlignment="Top" Click="UIRescanHardware_Click"/>
+        <CheckBox Name="UIDashboardQualityFix" Content="Use Dashboard Quality Fix" ToolTip="Overrides SteamVR's default behavior and renders the dashboard at a good quality regardless of your system." Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="5,43,0,0" VerticalAlignment="Top" Click="UIDashboardQualityFix_Click"/>
+        <Button x:Name="UIAudioSettings" ToolTip="Configure audio settings, such as certain volumes on launch." Content="Audio Config" Grid.Column="1" HorizontalAlignment="Left" Margin="5,64,0,0" Grid.Row="2" VerticalAlignment="Top" Width="154" Click="UIAudioSettings_Click"/>
+        <Button Name="UICustomStartupPrograms" ToolTip="Run any programs/scripts you want whenever SteamVR is detected." Content="Custom Startup Programs" Grid.Column="1" HorizontalAlignment="Left" Margin="5,92,0,0" Grid.Row="2" VerticalAlignment="Top" Width="154" Click="UICustomStartupPrograms_Click" />
+
+
+
+        <Label Content="STEAMVR MANAGER SETTINGS" Grid.Row="3" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" />
+        <ComboBox Name="UIPollingRate" Grid.Column="1" HorizontalAlignment="Left" Margin="5,25,0,0" Grid.Row="3" VerticalAlignment="Top" Width="99" SelectionChanged="UIPollingRate_SelectionChanged"/>
+        <Label Content="SVRManager Polling Rate" ToolTip="Changes how often SVRManager checks if SteamVR is open. Default (7000ms)." Grid.Column="1" HorizontalAlignment="Left" Margin="103,23,0,0" Grid.Row="3" VerticalAlignment="Top" Width="147" Height="28"/>
+
+        <CheckBox Name="UIRunOnWindowsStart" Content="Run at Windows Startup" ToolTip="Changes if the tool will startup with Windows. It is recommended to leave this on." Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="5,54,0,0" VerticalAlignment="Top"/>
+        <Button Name="UIChangeSVRSettingsLocation" Content="Change steamvr.vrsettings Location" Grid.Column="1" HorizontalAlignment="Left" Margin="5,75,0,0" Grid.Row="3" VerticalAlignment="Top" Width="200" Click="UIChangeSVRSettingsLocation_Click"/>
+
+
+
+
+    </Grid>
+</Window>

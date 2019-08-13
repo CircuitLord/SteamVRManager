@@ -1,0 +1,18 @@
+﻿<Window x:Class="SteamVRManager.AudioConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SteamVRManager"
+        mc:Ignorable="d"
+        Title="Audio Configuration" Height="200" Width="300">
+    <Grid>
+        <CheckBox Name="UIOverrideVol" Content="Override volume on enter/exit VR" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="UIOverrideVol_Checked" Unchecked="UIOverrideVol_Unchecked"/>
+
+        <Label Name="UILabel1" Content="On Enter VR:" HorizontalAlignment="Left" Margin="7,28,0,0" VerticalAlignment="Top"/>
+        <Slider Name="UIEnterVRVol" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" HorizontalAlignment="Left" Margin="87,31,0,0" VerticalAlignment="Top" Width="195" Maximum="100"/>
+        <Label Name="UILabel2" Content="On Exit VR:" HorizontalAlignment="Left" Margin="7,54,0,0" VerticalAlignment="Top"/>
+        <Slider Name="UIExitVRVol" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" HorizontalAlignment="Left" Margin="87,57,0,0" VerticalAlignment="Top" Width="195" Maximum="100"/>
+
+    </Grid>
+</Window>
