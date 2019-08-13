@@ -1,5 +1,6 @@
 # SteamVR Manager
-SVR Manager fixes and allows you to tweak SteamVR.
+![SVR Manager Logo](https://i.imgur.com/I7FNZGz.png)
+SVR Manager is a tool that can fix and tweak SteamVR to your liking.
 
 ### So what exactly can it do?
 - Rescan for hardware on SteamVR launch: fixes headset audio device not showing.
