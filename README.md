@@ -11,6 +11,8 @@ SVR Manager is a tool that can fix and tweak SteamVR to your liking.
 - It auto-updates! Fancy, right?
 - (Coming soon!) Launching SteamVR in a specific refresh rate mode without having to retart it.
 
+And more!
+
 ### Sounds cool! How do I get it?
 Head over to the [releases](https://github.com/CircuitLord/SteamVRManager/releases/latest) page, and pick up the SteamVRManagerInstall.exe.
 Simply run that, install the program, and you should be good to go!
