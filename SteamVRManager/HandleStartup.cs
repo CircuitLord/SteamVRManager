@@ -14,6 +14,11 @@ namespace SteamVRManager
 
         public static void EnableRunAtStartup()
         {
+
+			if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), "SteamVRManagerStartup.txt"))) {
+				File.Move(Path.Combine(Directory.GetCurrentDirectory(), "SteamVRManagerStartup.txt"), Path.Combine(Directory.GetCurrentDirectory(), "SteamVRManagerStartup.lnk"));
+			}
+
             try
             {
 
