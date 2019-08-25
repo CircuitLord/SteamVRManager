@@ -51,16 +51,19 @@ namespace SteamVRManager
 			}
 
 
-            CheckSteamVR.MonitorSteamVR();
 
             CheckSteamVR.steamVRChanged += SteamVRChanged;
 
-
-
 			LoadUIValues();
 
-
 			Log("Waiting for SteamVR...");
+
+            CheckSteamVR.MonitorSteamVR();
+
+
+
+
+
 
 
 

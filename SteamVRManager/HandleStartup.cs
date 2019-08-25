@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,9 +16,16 @@ namespace SteamVRManager
         {
             try
             {
-                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                Assembly curAssembly = Assembly.GetExecutingAssembly();
-                key.SetValue("SteamVRManager", curAssembly.Location);
+
+				if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "SteamVRManagerStartup.lnk"))) {
+					Console.WriteLine("startup exists");
+					return;
+				}
+				
+				File.Copy(Path.Combine(Directory.GetCurrentDirectory(), "SteamVRManagerStartup.lnk"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "SteamVRManagerStartup.lnk"), false);
+				//Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                //Assembly curAssembly = Assembly.GetExecutingAssembly();
+                //key.SetValue("SteamVRManager", curAssembly.Location);
             }
             catch
             {
@@ -28,9 +36,11 @@ namespace SteamVRManager
 		public static void DisableRunAtStartup() {
 			try {
 
-				RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+				File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "SteamVRManagerStartup.lnk"));
 
-				key.DeleteValue("SteamVRManager");
+				//RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+				//key.DeleteValue("SteamVRManager");
 			} catch {
 				Console.WriteLine("Failed to remove from run at startup.");
 			}
