@@ -12,7 +12,7 @@ This is still in development and I can't quite gurantee it doesn't break anythin
 - Set specific audio levels for when SteamVR is opened or closed.
 - Launch any custom exes or scripts you want when SteamVR is opened.
 - It auto-updates! Fancy, right?
-- (Coming soon!) Launching SteamVR in a specific refresh rate mode without having to retart it.
+- (Coming soon!) Launching SteamVR in a specific refresh rate mode without having to restart it.
 
 And more!
 
